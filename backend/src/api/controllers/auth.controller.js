@@ -13,7 +13,7 @@ const setTokenCookie = (res, token) => {
     res.cookie('jwt', token, {
         httpOnly: true, // Prevents XSS attacks (cookie cannot be accessed via JS)
         secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-        sameSite: 'strict', // Prevents CSRF attacks
+        sameSite: 'none', // Prevents CSRF attacks
         maxAge: 24 * 60 * 60 * 1000 // 1 day in milliseconds
     });
 };
