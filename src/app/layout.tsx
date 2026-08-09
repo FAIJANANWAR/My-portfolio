@@ -135,7 +135,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeAntiFlashScript }} />
       </head>
-      <body className="min-h-screen bg-[var(--background,#FDFBF7)] text-[var(--foreground,#2D1217)] antialiased overflow-x-hidden pt-8 font-sans transition-colors duration-300">
+      <body className="min-h-screen bg-[var(--background,#FDFBF7)] text-[var(--foreground,#2D1217)] antialiased overflow-x-hidden pt-0 font-sans transition-colors duration-300">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
