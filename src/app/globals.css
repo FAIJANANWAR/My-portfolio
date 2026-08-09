@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream-bg: #FDFBF7;
+  --color-soft-beige: #F5EFE6;
+  --color-terracotta: #D96B43;
+  --color-terracotta-hover: #C55A32;
+  --color-muted-orange: #E08E53;
+  --color-deep-burgundy: #4A1D24;
+  --color-dark-plum: #2D1217;
+  --color-muted-blue: #3B5998;
+  --color-warm-white: #FFFDF9;
+  --color-warm-border: #E8DFC8;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: var(--font-editorial), Newsreader, Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --background: #FDFBF7;
+  --foreground: #2D1217;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F5EFE6;
+}
+::-webkit-scrollbar-thumb {
+  background: #D96B43;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4A1D24;
+}
+
+::selection {
+  background: rgba(217, 107, 67, 0.25);
+  color: #2D1217;
+}
+
+/* ─── Editorial Design System Utilities ────────────────────────────────── */
+
+@utility editorial-serif {
+  font-family: var(--font-editorial);
+}
+
+@utility editorial-card {
+  background: #FFFDF9;
+  border: 1px solid #E8DFC8;
+  box-shadow: 0 4px 20px rgba(45, 18, 23, 0.04);
+}
+
+@utility editorial-badge {
+  background: #F5EFE6;
+  border: 1px solid #E8DFC8;
+  color: #4A1D24;
+}
+
+@utility bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Float & Parallax Animations */
+@keyframes float-gentle {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+@utility animate-float-gentle {
+  animation: float-gentle 6s infinite ease-in-out;
+}
+
+/* ─── Typography Rules ─────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-editorial);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}

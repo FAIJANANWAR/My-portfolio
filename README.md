@@ -1,133 +1,120 @@
-# SecureVault
+# Portfolio Operating System (Portfolio OS)
 
-SecureVault is a production-grade encrypted notes application designed with military-grade security principles. It demonstrates advanced concepts in cryptography, authentication, and secure architecture, making it an excellent showcase for technical interviews.
+A production-ready, enterprise-grade **CMS-Powered Portfolio Operating System** built with **Next.js 16**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, **Recharts**, and **Supabase PostgreSQL & Auth**.
 
-## Security Architecture
+Designed to empower developers, engineers, and creators to manage every section of their digital presence without touching code.
 
-This project implements a **Defense-in-Depth (Double Encryption)** strategy.
+---
 
-### 1. End-to-End Encryption (E2EE) - Frontend
-- **Algorithm:** AES-GCM (256-bit) via Web Crypto API.
-- **Why AES-GCM?** Unlike CBC mode which is vulnerable to padding oracle attacks, GCM provides Authenticated Encryption (AEAD). It ensures both confidentiality and data integrity using an Authentication Tag.
-- **Implementation:** Before a note leaves the browser, it is encrypted. A secure random 12-byte IV is generated for *every* encryption (IV reuse in GCM is catastrophic). The resulting payload is base64 encoded.
-- **Result:** The server NEVER receives or sees the plaintext note content. If the server is compromised, the attacker only sees E2EE ciphertexts.
+## Key Features
 
-### 2. Server-Side Encryption (SSE) - Backend
-- **Algorithm:** AES-256-GCM via Node.js `crypto` module.
-- **Why SSE?** Defense-in-depth. We encrypt the already E2EE-encrypted payload again at rest in MongoDB using a Server Master Key loaded strictly from the `.env` file.
-- **Authentication & Integrity:** Validates the GCM AuthTag upon decryption to detect tampering.
+- **Secret Admin Gateway**: Hidden entry point triggered via `CTRL + SHIFT + A` hotkey or clicking copyright notice 5 times.
+- **SaaS Executive Dashboard**: Real-time traffic analytics, resume download metrics, Recharts weekly & monthly graphs, device/browser distribution breakdown.
+- **Complete CMS for Every Section**: Dedicated management panels for Hero, About, Skills (with drag-and-drop reordering), Experience, Education, Projects (full CRUD with markdown & version history), Certificates, Blogs, Contact Info, Navigation, Settings, SEO, Media Manager, AI Assistant, and GitHub Sync.
+- **Live Preview & Inline Editing**: Side-by-side live editor preview panes + floating inline edit mode triggers on the public site when logged in as admin.
+- **AI Content Generator**: Integrated AI engine for generating project descriptions, polishing bio text, drafting blog outlines, and generating SEO metadata.
+- **GitHub API Synchronization**: Automatic repository, star, fork, and contribution sync with manual override capabilities.
+- **Enterprise Security**: Row Level Security (RLS) policies, middleware route protection, Supabase JWT auth, Zod schema validation, CSRF & XSS protection.
 
-### 3. Authentication
-- **Mechanism:** JWT stored strictly in `httpOnly` cookies.
-- **Why not localStorage?** `localStorage` is accessible via JavaScript, making it highly vulnerable to Cross-Site Scripting (XSS) attacks. `httpOnly` cookies are invisible to JS, mitigating XSS token theft.
-- **Passwords:** Hashed using `bcrypt` with 10 salt rounds to defend against rainbow table and brute-force attacks.
-- **User Isolation:** All API routes extract `req.user.id` from the validated JWT and enforce strict database filtering to prevent Insecure Direct Object Reference (IDOR) vulnerabilities.
+---
 
-## Project Structure
+## Tech Stack
+
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 16 (App Router, Server Actions) |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS v4, Framer Motion |
+| **Database** | Supabase PostgreSQL |
+| **Auth** | Supabase Auth + JWT Cookies |
+| **Storage** | Supabase Storage |
+| **Analytics & Charts**| Recharts |
+| **Icons & UI** | Lucide Icons, Radix UI |
+| **Deployment** | Vercel |
+
+---
+
+## Project Folder Structure
 
 ```text
-securevault/
-├── backend/
-│   ├── src/
-│   │   ├── api/
-│   │   │   ├── controllers/      # auth.controller.js, notes.controller.js
-│   │   │   ├── middleware/       # auth.middleware.js (JWT validation)
-│   │   │   ├── routes/           # auth.routes.js, notes.routes.js
-│   │   │   └── models/           # User.model.js, Note.model.js
-│   │   ├── utils/
-│   │   │   └── crypto.js         # Backend AES-256-GCM logic
-│   │   └── server.js             # Express app entry point
-│   ├── .env
-│   └── package.json
-└── frontend/
-    ├── src/
-    │   ├── api/                  # axios.js (withCredentials enabled)
-    │   ├── components/           # ProtectedRoute.jsx
-    │   ├── hooks/                # useAuth.js (React Query)
-    │   ├── pages/                # Login, Register, Dashboard (Tailwind CSS)
-    │   ├── utils/
-    │   │   └── webcrypto.js      # Frontend Web Crypto API logic
-    │   └── App.jsx
-    ├── tailwind.config.js
-    └── package.json
+├── src/
+│   ├── app/
+│   │   ├── (public)/          # Public portfolio pages & layout
+│   │   ├── admin/             # SaaS Admin Command Center & CMS Pages
+│   │   │   ├── dashboard/     # Recharts analytics overview
+│   │   │   ├── hero/          # Hero CMS
+│   │   │   ├── about/         # About CMS
+│   │   │   ├── skills/        # Skills CMS (Drag & Drop)
+│   │   │   ├── experience/    # Work history CRUD
+│   │   │   ├── education/     # Academic history CRUD
+│   │   │   ├── projects/      # Projects CRUD & version history
+│   │   │   ├── certificates/  # Certificates CRUD
+│   │   │   ├── blogs/         # Blog platform CMS
+│   │   │   ├── contact/       # Contact info & message inbox
+│   │   │   ├── navigation/    # Navbar & Footer CMS
+│   │   │   ├── settings/      # Aesthetics & site preferences
+│   │   │   ├── seo/           # Meta & OpenGraph panel
+│   │   │   ├── media/         # Asset & storage manager
+│   │   │   ├── ai/            # AI content assistant
+│   │   │   ├── github/        # GitHub API sync manager
+│   │   │   └── login/         # Admin login route
+│   │   ├── api/               # Analytics, AI, and GitHub API routes
+│   │   └── layout.tsx         # Root layout with AdminBar integration
+│   ├── components/
+│   │   ├── admin/             # SecretLoginModal, AdminBar, LivePreviewPane
+│   │   ├── layout/            # Navbar, Footer (with secret trigger)
+│   │   └── sections/          # Public hero, about, projects, tech stack
+│   └── lib/
+│       ├── services/          # Unified portfolioService data layer
+│       ├── supabase/          # Supabase browser, server, middleware setup
+│       └── types/             # TypeScript interfaces for all CMS models
+├── supabase/
+│   └── schema.sql             # Full SQL database migration script with RLS
 ```
 
-## Setup & Installation
+---
 
-### Prerequisites
-- Node.js (v18+)
-- MongoDB running locally or MongoDB Atlas URI
+## Quick Start & Installation
 
-### Backend Setup
-1. Navigate to the backend directory:
+1. **Clone & Install Dependencies**:
    ```bash
-   cd backend
-   ```
-2. Install dependencies:
-   ```bash
+   git clone https://github.com/FAIJANANWAR/faijan-web3-portfolio.git
+   cd faijan-web3-portfolio
    npm install
    ```
-3. Set up environment variables in `backend/.env`:
+
+2. **Environment Variables (`.env.local`)**:
+   Create a `.env.local` file:
    ```env
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/securevault
-   JWT_SECRET=your_super_secret_jwt_key
-   CLIENT_URL=http://localhost:5173
-   # SERVER_MASTER_KEY must be exactly 32 bytes (64 hex characters)
-   SERVER_MASTER_KEY=45d5a7ef824a732fb6d0d579e0a829e06cd2df3dfd96d7c67c5270de33100db6
-   ```
-4. Start the server:
-   ```bash
-   npm start
+   NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-project.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+   SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
    ```
 
-### Frontend Setup
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the Vite development server:
+3. **Database Migration**:
+   Run `supabase/schema.sql` in your Supabase SQL Editor to initialize all tables, indexes, and Row Level Security policies.
+
+4. **Start Development Server**:
    ```bash
    npm run dev
    ```
+   Open `http://localhost:3000` in your browser.
 
-## API Routes
+5. **Secret Admin Login**:
+   - Press **`CTRL + SHIFT + A`** anywhere on the website, OR
+   - Click the copyright notice in the footer **5 times**.
+   - Demo Password: `admin123`
 
-### Authentication (`/auth`)
-- `POST /auth/register` - Registers a user, hashes password, sets `httpOnly` cookie.
-- `POST /auth/login` - Validates credentials, sets `httpOnly` cookie.
-- `POST /auth/logout` - Clears the JWT cookie.
-- `GET /auth/me` - Validates session and returns user info.
+---
 
-### Notes (`/notes`) - *Requires Auth*
-- `GET /notes` - Fetches and SSE-decrypts all notes for the authenticated user.
-- `POST /notes` - SSE-encrypts and saves a new note.
-- `DELETE /notes/:id` - Deletes a specific note (verifies ownership).
+## Documentation Suite
 
-## Deployment Guide
+For complete details on operation, administration, database design, and architecture, explore the dedicated documentation guides:
 
-For a production deployment, follow these steps:
-
-1. **Database (MongoDB Atlas):**
-   - Create a cluster on MongoDB Atlas.
-   - Configure Network Access (IP Whitelist) to allow connections from your backend provider.
-   - Obtain the connection string and set it as `MONGO_URI`.
-
-2. **Backend (Render / Railway / Heroku):**
-   - Push the backend code to a GitHub repository.
-   - Deploy as a Web Service.
-   - Set all environment variables (generate a strong `JWT_SECRET` and a secure 64-hex-character `SERVER_MASTER_KEY`).
-   - Update `CLIENT_URL` to match your deployed frontend domain.
-
-3. **Frontend (Vercel / Netlify):**
-   - Push the frontend code to a GitHub repository.
-   - Deploy to Vercel.
-   - Ensure the Vite build command is `npm run build` and the output directory is `dist`.
-   - Update the Axios `baseURL` in `src/api/axios.js` to point to your deployed backend URL.
-
-## AI Usage Log
-*This project was developed with the assistance of Antigravity (DeepMind's Agentic AI), focusing on secure architecture design, robust cryptographic implementation (AES-GCM WebCrypto + Node.js crypto), and modern UI development using React and Tailwind CSS.*
+- 📘 [ADMIN_GUIDE.md](file:///d:/sss/ADMIN_GUIDE.md) - Admin operating workflows and CMS usage.
+- 💻 [DEVELOPER_GUIDE.md](file:///d:/sss/DEVELOPER_GUIDE.md) - Architecture, coding standards, and extension instructions.
+- 🗄️ [DATABASE_GUIDE.md](file:///d:/sss/DATABASE_GUIDE.md) - Database schema, ER diagram details, tables, and RLS policies.
+- 📡 [API_DOCUMENTATION.md](file:///d:/sss/API_DOCUMENTATION.md) - Complete REST & Server Actions API endpoints.
+- 🚀 [DEPLOYMENT_GUIDE.md](file:///d:/sss/DEPLOYMENT_GUIDE.md) - Vercel & Supabase deployment checklist.
+- 🗺️ [ROADMAP.md](file:///d:/sss/ROADMAP.md) - Future feature roadmap.
+- 🧪 [TESTING_GUIDE.md](file:///d:/sss/TESTING_GUIDE.md) - Quality assurance & testing protocols.
