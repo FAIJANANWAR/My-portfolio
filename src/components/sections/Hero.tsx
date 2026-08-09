@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Download, ChevronDown } from "lucide-react";
+import { FiGithub, FiLinkedin, FiTwitter, FiInstagram } from "react-[#icons]/fi"; // fallback handled cleanly
 import Link from "next/link";
 import { portfolioService } from "@/lib/services/portfolioService";
 import { HeroData } from "@/lib/types/portfolio";
@@ -11,7 +12,6 @@ export default function Hero() {
   const [heroData, setHeroData] = useState<HeroData | null>(null);
   const { scrollY } = useScroll();
 
-  // Subtle Parallax Transforms
   const mountainY = useTransform(scrollY, [0, 500], [0, 80]);
   const forestY = useTransform(scrollY, [0, 500], [0, 40]);
   const textY = useTransform(scrollY, [0, 500], [0, -30]);
@@ -102,7 +102,7 @@ export default function Hero() {
             {subtitle}
           </motion.p>
 
-          {/* Action CTAs (Contact Station CTA removed per Section 2 directive) */}
+          {/* Action CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

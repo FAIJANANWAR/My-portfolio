@@ -2,32 +2,32 @@
 
 import { motion } from "framer-motion";
 import FadeInView from "@/components/ui/FadeInView";
-import { GraduationCap, ShieldCheck, Cloud, Award } from "lucide-react";
+import { GraduationCap, ShieldCheck, Cloud, Code } from "lucide-react";
 
 const milestones = [
   {
     icon: GraduationCap,
     title: "Master of Computer Applications (MCA)",
     sub: "Poornima University (2025 – 2027)",
-    desc: "Advanced studies in Software Engineering, Cloud Computing, Database Management, and Web Architecture.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Bachelor of Technology (B.Tech)",
-    sub: "Computer Science & Engineering (2020 – 2024)",
-    desc: "Solid theoretical and practical grounding in Data Structures, Algorithms, Object-Oriented Programming, and Web Development.",
+    desc: "Advanced software engineering, database management systems, cloud computing, and full-stack web application architecture.",
   },
   {
     icon: ShieldCheck,
     title: "Red Hat System Administration (RH124)",
     sub: "Red Hat Certified Academy",
-    desc: "Hands-on expertise in Red Hat Enterprise Linux system management, command line operations, and security administration.",
+    desc: "Hands-on expertise in Red Hat Enterprise Linux system management, command line operations, user management, and security administration.",
   },
   {
     icon: Cloud,
     title: "Google Cloud & Apigee API Security",
-    sub: "Google Cloud Badges",
+    sub: "Google Cloud Credentials",
     desc: "Credentialed in Cloud Computing Fundamentals and Google Cloud Apigee API Security (OAuth, JWT, API Threat Protection).",
+  },
+  {
+    icon: Code,
+    title: "Full-Stack Web Engineering Mastery",
+    sub: "React, Next.js, Node.js & PostgreSQL",
+    desc: "Demonstrated competency in building end-to-end full-stack web platforms, client-side encryption vaults, and dynamic calculation utilities.",
   },
 ];
 

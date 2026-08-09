@@ -9,7 +9,7 @@ const socialLinks = [
   { icon: FiGithub, href: "https://github.com/faijananwar", label: "GitHub", hoverColor: "hover:text-[#D96B43]" },
   { icon: FiLinkedin, href: "https://www.linkedin.com/in/faijan-anwar/", label: "LinkedIn", hoverColor: "hover:text-[#3B5998]" },
   { icon: FiTwitter, href: "https://x.com/faijananwar", label: "X (Twitter)", hoverColor: "hover:text-[#D96B43]" },
-  { icon: FiInstagram, href: "https://www.instagram.com/anwar_faiz_?igsh=MTM5bXgyZ3A0cm9lcQ==", label: "Instagram", hoverColor: "hover:text-pink-600" },
+  { icon: FiInstagram, href: "https://www.instagram.com/anwar_faiz_?igsh=MTM5bXgyZ3A0cm9lcQ==", label: "Instagram", hoverColor: "hover:text-pink-500" },
 ];
 
 const footerLinks = [
@@ -26,7 +26,6 @@ export default function Footer() {
   const [clickCount, setClickCount] = useState(0);
   const [showSecretModal, setShowSecretModal] = useState(false);
 
-  // Secret Hotkey Listener: CTRL + SHIFT + A
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && (e.key === "A" || e.key === "a")) {
@@ -93,7 +92,9 @@ export default function Footer() {
             {/* Contact quick links */}
             <div className="flex flex-col gap-3">
               <p className="text-[10px] font-bold text-[#E08E53] uppercase tracking-widest">Contact</p>
-              <a href="mailto:contact@faijan.in" className="text-xs text-[#F5EFE6]/80 hover:text-white transition-colors">contact@faijan.in</a>
+              <a href="mailto:faizan244244@gmail.com" className="text-xs text-[#F5EFE6]/80 hover:text-white transition-colors">
+                faizan244244@gmail.com
+              </a>
               <span className="text-xs text-[#F5EFE6]/60">India</span>
             </div>
           </div>

@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import FadeInView from "@/components/ui/FadeInView";
 import { Mail, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
-import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiTwitter, FiInstagram } from "react-icons/fi";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -70,7 +69,7 @@ export default function Contact() {
 
               <div className="space-y-4">
                 <a
-                  href="mailto:contact@faijan.in"
+                  href="mailto:faizan244244@gmail.com"
                   className="flex items-center gap-4 p-3 rounded-2xl bg-[#F5EFE6]/60 dark:bg-[#2C161D]/60 hover:bg-[#F5EFE6] dark:hover:bg-[#2C161D] border border-[#E8DFC8] dark:border-[#3D2028] transition-all group"
                 >
                   <div className="w-10 h-10 rounded-xl bg-[#D96B43] text-white flex items-center justify-center shrink-0">
@@ -81,7 +80,7 @@ export default function Contact() {
                       Email Address
                     </span>
                     <span className="text-xs sm:text-sm font-semibold text-[#4A1D24] dark:text-[#FDFBF7] group-hover:underline">
-                      contact@faijan.in
+                      faizan244244@gmail.com
                     </span>
                   </div>
                 </a>
@@ -133,6 +132,15 @@ export default function Contact() {
                     title="X Twitter Profile"
                   >
                     <FiTwitter className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/anwar_faiz_?igsh=MTM5bXgyZ3A0cm9lcQ=="
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-3 rounded-xl bg-[#F5EFE6] dark:bg-[#2C161D] hover:bg-[#E8DFC8] dark:hover:bg-[#3D2028] border border-[#E8DFC8] dark:border-[#42222A] text-[#4A1D24] dark:text-[#FDFBF7] hover:text-pink-600 transition-all"
+                    title="Instagram Profile"
+                  >
+                    <FiInstagram className="w-5 h-5" />
                   </a>
                 </div>
               </div>

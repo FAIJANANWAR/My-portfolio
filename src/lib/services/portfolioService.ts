@@ -16,7 +16,6 @@ import {
   AnalyticsSummary,
 } from "../types/portfolio";
 
-// Clean, authentic default data aligned with FULL-STACK DEVELOPER positioning (Zero fabricated claims)
 const initialHero: HeroData = {
   name: "Faijan Anwar",
   title: "Full-Stack Developer",
@@ -31,7 +30,8 @@ const initialHero: HeroData = {
     github: "https://github.com/faijananwar",
     linkedin: "https://www.linkedin.com/in/faijan-anwar/",
     twitter: "https://x.com/faijananwar",
-    email: "contact@faijan.in",
+    instagram: "https://www.instagram.com/anwar_faiz_?igsh=MTM5bXgyZ3A0cm9lcQ==",
+    email: "faizan244244@gmail.com",
   },
   availabilityStatus: "Open for Opportunities",
   typingHeadlines: [
@@ -43,8 +43,8 @@ const initialHero: HeroData = {
   avatarUrl: "/profile.jpg",
   stats: [
     { value: "MCA", label: "Poornima Univ. ('27)" },
-    { value: "B.Tech", label: "Computer Science" },
     { value: "RH124", label: "Red Hat Certified" },
+    { value: "Full-Stack", label: "Web Engineering" },
   ],
 };
 
@@ -61,7 +61,7 @@ const initialAbout: AboutData = {
   personalInfo: [
     { label: "Location", value: "India" },
     { label: "Role", value: "Full-Stack Developer" },
-    { label: "Degree", value: "MCA (Poornima University) & B.Tech CSE" },
+    { label: "Degree", value: "MCA (Poornima University)" },
     { label: "Status", value: "Available for Roles" },
   ],
   timeline: [
@@ -72,7 +72,6 @@ const initialAbout: AboutData = {
   avatarUrl: "/profile.jpg",
 };
 
-// Standard Industry Skills (No generic percentage bars, no exaggerated labels)
 const initialSkills: SkillItem[] = [
   { id: "1", name: "React", category: "Frontend", level: 90, experienceYears: "", iconName: "Code", color: "#D96B43", order: 1 },
   { id: "2", name: "Next.js", category: "Frontend", level: 88, experienceYears: "", iconName: "Code", color: "#4A1D24", order: 2 },
@@ -91,7 +90,6 @@ const initialSkills: SkillItem[] = [
   { id: "15", name: "Web Crypto API", category: "Tools & Security", level: 82, experienceYears: "", iconName: "Shield", color: "#4A1D24", order: 15 },
 ];
 
-// Authentic & User-Provided Experience Timeline
 const initialExperiences: ExperienceItem[] = [
   {
     id: "exp-orinson",
@@ -144,21 +142,6 @@ const initialExperiences: ExperienceItem[] = [
   },
 ];
 
-// Archived / Unverified experience entries (Not shown publicly)
-export const archivedExperiences: ExperienceItem[] = [
-  {
-    id: "exp-archived-1",
-    company: "Independent / Unverified",
-    position: "Senior Full-Stack Developer",
-    duration: "2024 - Present",
-    isCurrentJob: false,
-    description: "Archived record pending client verification.",
-    techStack: [],
-    achievements: [],
-    order: 99,
-  },
-];
-
 const initialEducation: EducationItem[] = [
   {
     id: "edu-1",
@@ -169,18 +152,8 @@ const initialEducation: EducationItem[] = [
     description: "Focusing on Software Engineering, Database Management Systems, Cloud Computing, and Web Application Architecture.",
     order: 1,
   },
-  {
-    id: "edu-2",
-    institute: "Computer Science & Engineering University",
-    degree: "Bachelor of Technology (B.Tech) in Computer Science",
-    duration: "2020 – 2024",
-    cgpa: "Completed",
-    description: "Studied core Computer Science subjects including Object-Oriented Programming, Data Structures, Algorithms, Web Technologies, and Database Systems.",
-    order: 2,
-  },
 ];
 
-// Real Projects including DevBlog Platform, SecureVault, Crypto Profit Calculator, DAO Governance System
 const initialProjects: ProjectItem[] = [
   {
     id: "devblog-platform",
@@ -204,8 +177,8 @@ const initialProjects: ProjectItem[] = [
     ],
     features: ["Markdown Post Editor", "Role-Based Access Control", "PostgreSQL Database Storage", "REST API Architecture"],
     lessons: ["Zod schema validation", "Full-stack SaaS architecture"],
-    github: "", // USER INPUT REQUIRED in MISSING_USER_DATA.md
-    live: "",   // USER INPUT REQUIRED in MISSING_USER_DATA.md
+    github: "", 
+    live: "https://dev-blog-livid-three.vercel.app/",
     thumbnailUrl: "/projects/portfolio-os.jpg",
     featured: true,
     status: "published",
@@ -218,29 +191,29 @@ const initialProjects: ProjectItem[] = [
     title: "SecureVault",
     category: "Security Engineering",
     type: "fullstack",
-    overview: "An encrypted notes application implementing end-to-end encryption, AES-GCM cryptography, JWT authentication, secure cookies, and defense-in-depth architecture.",
-    problem: "Storing sensitive notes on remote servers requires zero-knowledge client encryption to prevent unauthorized data exposure.",
+    overview: "An encrypted notes application implementing client-side zero-knowledge AES-GCM cryptography, JWT authentication, secure cookies, and defense-in-depth architecture. Client Only.",
+    problem: "Storing sensitive notes on remote servers requires zero-knowledge client-side encryption to prevent unauthorized data exposure.",
     solution: "Integrated Web Crypto API AES-GCM encryption client-side combined with JWT cookie authentication.",
-    architecture: "Client-side AES-GCM key derivation coupled with Express backend and MongoDB database storage.",
+    architecture: "Client-side AES-GCM key derivation coupled with Express backend and MongoDB database storage. Client Only Architecture.",
     techStack: {
-      Frontend: ["React", "Tailwind CSS", "Web Crypto API"],
+      Frontend: ["React", "Tailwind CSS", "Web Crypto API", "Client Only Cryptography"],
       Backend: ["Node.js", "Express", "MongoDB", "JWT", "bcrypt", "AES-GCM"],
     },
     challenges: [
       {
-        challenge: "Client-side encryption key handling",
+        challenge: "Client-side zero-knowledge encryption key handling",
         solution: "Utilized Web Crypto API subtle crypto interface for safe key derivation.",
       },
     ],
-    features: ["AES-GCM Encryption", "JWT Cookie Authentication", "bcrypt Password Hashing", "Defense-in-Depth Architecture"],
+    features: ["Client Only AES-GCM Encryption", "JWT Cookie Authentication", "bcrypt Password Hashing", "Zero-Knowledge Architecture"],
     lessons: ["Web Cryptography API", "Secure Cookie Management"],
-    github: "", // USER INPUT REQUIRED in MISSING_USER_DATA.md
-    live: "",   // USER INPUT REQUIRED in MISSING_USER_DATA.md
+    github: "", 
+    live: "",
     thumbnailUrl: "/projects/sec-vault.jpg",
     featured: true,
     status: "published",
     priority: 2,
-    tags: ["React", "AES-GCM", "Node.js", "Express", "MongoDB"],
+    tags: ["Client Only", "React", "AES-GCM", "Node.js", "Express", "MongoDB"],
   },
   {
     id: "crypto-profit-calculator",
@@ -304,7 +277,6 @@ const initialProjects: ProjectItem[] = [
   },
 ];
 
-// Certificates clearly distinguishing Completed vs In Progress
 const initialCertificates: CertificateItem[] = [
   {
     id: "cert-1",
@@ -482,13 +454,14 @@ const initialBlogs: BlogPostItem[] = [
 ];
 
 const initialContact: ContactInfoData = {
-  email: "contact@faijan.in",
+  email: "faizan244244@gmail.com",
   phone: "",
   location: "India — Available for Remote Work",
   whatsapp: "",
   github: "https://github.com/FAIJANANWAR",
   linkedin: "https://linkedin.com/in/faijan-anwar/",
   twitter: "https://x.com/FaijanAnwar",
+  instagram: "https://www.instagram.com/anwar_faiz_?igsh=MTM5bXgyZ3A0cm9lcQ==",
   availability: "Available for Full-Stack Developer roles.",
   googleMapEmbedUrl: "https://maps.google.com/maps?q=India&t=&z=5&ie=UTF8&iwloc=&output=embed",
 };
@@ -526,6 +499,7 @@ const initialFooter: FooterConfig = {
     { platform: "GitHub", url: "https://github.com/FAIJANANWAR" },
     { platform: "LinkedIn", url: "https://linkedin.com/in/faijan-anwar/" },
     { platform: "Twitter", url: "https://x.com/FaijanAnwar" },
+    { platform: "Instagram", url: "https://www.instagram.com/anwar_faiz_?igsh=MTM5bXgyZ3A0cm9lcQ==" },
   ],
 };
 
@@ -555,7 +529,6 @@ const initialSeo: SeoSettings = {
   }),
 };
 
-// Helper storage function for client-side persistence fallback
 function getStoredItem<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
   try {
@@ -575,7 +548,6 @@ function setStoredItem<T>(key: string, value: T): void {
   }
 }
 
-// Portfolio Service Data Access API
 export const portfolioService = {
   getHero: async (): Promise<HeroData> => getStoredItem("hero", initialHero),
   updateHero: async (data: HeroData): Promise<HeroData> => {

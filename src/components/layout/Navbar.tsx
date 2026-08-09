@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiTwitter, FiInstagram } from "react-icons/fi";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 
 const navLinks = [
@@ -45,7 +45,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-8">
+        <div className="hidden md:flex items-center gap-3 lg:gap-4 xl:gap-6">
           <div className="flex gap-0.5 lg:gap-1 relative">
             {navLinks.map((link, idx) => (
               <Link
@@ -53,7 +53,7 @@ export default function Navbar() {
                 href={link.href}
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className="relative text-xs uppercase tracking-wider font-semibold text-[#4A1D24]/80 dark:text-[#F5EFE6]/80 hover:text-[#D96B43] dark:hover:text-[#E08E53] px-3 py-1.5 rounded-xl transition-colors duration-200 select-none"
+                className="relative text-xs uppercase tracking-wider font-semibold text-[#4A1D24]/80 dark:text-[#F5EFE6]/80 hover:text-[#D96B43] dark:hover:text-[#E08E53] px-2.5 py-1.5 rounded-xl transition-colors duration-200 select-none"
               >
                 {hoveredIndex === idx && (
                   <motion.span
@@ -73,42 +73,51 @@ export default function Navbar() {
           <div className="hidden xl:block h-4 w-px bg-[#E8DFC8] dark:bg-[#3D2028]" />
 
           {/* Social Icons */}
-          <div className="hidden xl:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-2">
             <a
               href="https://github.com/faijananwar"
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
-              className="w-8 h-8 flex items-center justify-center text-[#4A1D24]/70 dark:text-[#F5EFE6]/70 hover:text-[#D96B43] rounded-lg hover:bg-[#F5EFE6] dark:hover:bg-[#2C161D] transition-all"
+              className="w-7 h-7 flex items-center justify-center text-[#4A1D24]/70 dark:text-[#F5EFE6]/70 hover:text-[#D96B43] rounded-lg hover:bg-[#F5EFE6] dark:hover:bg-[#2C161D] transition-all"
             >
-              <FiGithub className="w-4 h-4" />
+              <FiGithub className="w-3.5 h-3.5" />
             </a>
             <a
               href="https://www.linkedin.com/in/faijan-anwar/"
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
-              className="w-8 h-8 flex items-center justify-center text-[#4A1D24]/70 dark:text-[#F5EFE6]/70 hover:text-[#3B5998] rounded-lg hover:bg-[#F5EFE6] dark:hover:bg-[#2C161D] transition-all"
+              className="w-7 h-7 flex items-center justify-center text-[#4A1D24]/70 dark:text-[#F5EFE6]/70 hover:text-[#3B5998] rounded-lg hover:bg-[#F5EFE6] dark:hover:bg-[#2C161D] transition-all"
             >
-              <FiLinkedin className="w-4 h-4" />
+              <FiLinkedin className="w-3.5 h-3.5" />
             </a>
             <a
               href="https://x.com/faijananwar"
               target="_blank"
               rel="noreferrer"
               aria-label="X Twitter"
-              className="w-8 h-8 flex items-center justify-center text-[#4A1D24]/70 dark:text-[#F5EFE6]/70 hover:text-[#D96B43] rounded-lg hover:bg-[#F5EFE6] dark:hover:bg-[#2C161D] transition-all"
+              className="w-7 h-7 flex items-center justify-center text-[#4A1D24]/70 dark:text-[#F5EFE6]/70 hover:text-[#D96B43] rounded-lg hover:bg-[#F5EFE6] dark:hover:bg-[#2C161D] transition-all"
             >
-              <FiTwitter className="w-4 h-4" />
+              <FiTwitter className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="https://www.instagram.com/anwar_faiz_?igsh=MTM5bXgyZ3A0cm9lcQ=="
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="w-7 h-7 flex items-center justify-center text-[#4A1D24]/70 dark:text-[#F5EFE6]/70 hover:text-pink-600 rounded-lg hover:bg-[#F5EFE6] dark:hover:bg-[#2C161D] transition-all"
+            >
+              <FiInstagram className="w-3.5 h-3.5" />
             </a>
           </div>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <ThemeToggle />
             <a
               href="/resume.pdf"
               download
-              className="text-xs font-semibold px-4 py-2 bg-[#F5EFE6] dark:bg-[#2C161D] hover:bg-[#E8DFC8] dark:hover:bg-[#3D2028] border border-[#E8DFC8] dark:border-[#42222A] text-[#2D1217] dark:text-[#FDFBF7] rounded-xl transition-all duration-150 cursor-pointer"
+              className="text-xs font-semibold px-3.5 py-1.5 bg-[#F5EFE6] dark:bg-[#2C161D] hover:bg-[#E8DFC8] dark:hover:bg-[#3D2028] border border-[#E8DFC8] dark:border-[#42222A] text-[#2D1217] dark:text-[#FDFBF7] rounded-xl transition-all duration-150 cursor-pointer"
             >
               Resume
             </a>
