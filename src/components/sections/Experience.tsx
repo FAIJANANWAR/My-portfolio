@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import FadeInView from "@/components/ui/FadeInView";
 import { portfolioService } from "@/lib/services/portfolioService";
 import { ExperienceItem } from "@/lib/types/portfolio";
-import { Calendar, Briefcase, ChevronRight, Award, Code2 } from "lucide-react";
+import { Calendar, Briefcase, ChevronRight, Award, Code2, MapPin, Laptop, Building2 } from "lucide-react";
 
 export default function Experience() {
   const [experiences, setExperiences] = useState<ExperienceItem[]>([]);
@@ -13,8 +13,10 @@ export default function Experience() {
 
   useEffect(() => {
     portfolioService.getExperiences().then((list) => {
-      setExperiences(list);
-      if (list.length > 0) setSelectedExp(list[0]);
+      // Filter out any stale intern item if it was cached in localStorage
+      const filtered = list.filter((exp) => exp.id !== "exp-intern" && !exp.position.toLowerCase().includes("intern"));
+      setExperiences(filtered);
+      if (filtered.length > 0) setSelectedExp(filtered[0]);
     });
   }, []);
 
@@ -29,7 +31,7 @@ export default function Experience() {
             Experience Journey
           </h2>
           <p className="text-sm sm:text-base text-[#2D1217]/80 dark:text-[#F5EFE6]/80">
-            A visual road mapping my professional milestones, engineering responsibilities, and technical achievements.
+            A visual road mapping my professional engineering milestones, responsibilities, and technical impact.
           </p>
           <div className="w-20 h-1 bg-[#D96B43] rounded-full mx-auto mt-4" />
         </FadeInView>
@@ -45,6 +47,8 @@ export default function Experience() {
             <div className="space-y-8 relative z-10">
               {experiences.map((exp, index) => {
                 const isSelected = selectedExp?.id === exp.id;
+                const isRemote = exp.location === "Remote" || exp.company.toLowerCase().includes("orinson");
+
                 return (
                   <motion.div
                     key={exp.id}
@@ -76,11 +80,16 @@ export default function Experience() {
                           <Calendar className="w-3 h-3" />
                           {exp.duration}
                         </span>
-                        {exp.isCurrentJob && (
-                          <span className="text-[10px] font-semibold text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded-full border border-emerald-300 dark:border-emerald-700">
-                            Current Role
-                          </span>
-                        )}
+                        <span
+                          className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full border flex items-center gap-1 ${
+                            isRemote
+                              ? "bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-800"
+                              : "bg-purple-50 dark:bg-purple-950/40 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-800"
+                          }`}
+                        >
+                          {isRemote ? <Laptop className="w-3 h-3" /> : <Building2 className="w-3 h-3" />}
+                          {isRemote ? "Remote" : "In-Office"}
+                        </span>
                       </div>
                       <h3 className="font-editorial text-lg sm:text-xl font-bold text-[#4A1D24] dark:text-[#FDFBF7] truncate">
                         {exp.position}
@@ -115,9 +124,15 @@ export default function Experience() {
                 >
                   <div className="flex items-start justify-between border-b border-[#E8DFC8] dark:border-[#3D2028] pb-5">
                     <div>
-                      <span className="text-xs font-bold text-[#D96B43] uppercase tracking-widest block mb-1">
-                        {selectedExp.duration}
-                      </span>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-xs font-bold text-[#D96B43] uppercase tracking-widest block">
+                          {selectedExp.duration}
+                        </span>
+                        <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-[#F5EFE6] dark:bg-[#2C161D] text-[#4A1D24] dark:text-[#FDFBF7] border border-[#E8DFC8] dark:border-[#42222A] flex items-center gap-1">
+                          <MapPin className="w-3 h-3 text-[#D96B43]" />
+                          {selectedExp.location || (selectedExp.company.toLowerCase().includes("orinson") ? "Remote" : "In-Office")}
+                        </span>
+                      </div>
                       <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-[#4A1D24] dark:text-[#FDFBF7]">
                         {selectedExp.position}
                       </h3>
