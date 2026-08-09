@@ -1,179 +1,124 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import FadeInView from "@/components/ui/FadeInView";
 import { portfolioService } from "@/lib/services/portfolioService";
 import { CertificateItem } from "@/lib/types/portfolio";
-import { ExternalLink, X, BookOpen, ShieldCheck, CheckCircle2, Clock } from "lucide-react";
+import { Award, ExternalLink, CheckCircle, Clock } from "lucide-react";
 
 export default function CertificationsSection() {
   const [certificates, setCertificates] = useState<CertificateItem[]>([]);
-  const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
+  const [filterStatus, setFilterStatus] = useState<"all" | "completed" | "in-progress">("all");
 
   useEffect(() => {
     portfolioService.getCertificates().then(setCertificates);
   }, []);
 
+  const filteredCerts = filterStatus === "all"
+    ? certificates
+    : certificates.filter((c) => (c.status || "completed") === filterStatus);
+
   return (
-    <section id="certificates" className="py-20 sm:py-28 relative overflow-hidden bg-[#FDFBF7] text-[#2D1217] border-b border-[#E8DFC8]">
+    <section id="certificates" className="py-20 sm:py-28 relative overflow-hidden bg-[#FDFBF7] dark:bg-[#170D10] text-[#2D1217] dark:text-[#F5EFE6] border-b border-[#E8DFC8] dark:border-[#3D2028] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
-        <FadeInView className="mb-14 text-center max-w-3xl mx-auto">
+        <FadeInView className="mb-12 text-center max-w-3xl mx-auto">
           <span className="text-xs font-bold text-[#D96B43] uppercase tracking-[0.25em] mb-2 block">
-            Certifications & Training
+            Verified Credentials & Learning
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold font-editorial text-[#4A1D24] mb-4">
-            Certificates
+          <h2 className="text-3xl sm:text-5xl font-bold font-editorial text-[#4A1D24] dark:text-[#FDFBF7] mb-4">
+            Certificate Library
           </h2>
-          <p className="text-sm sm:text-base text-[#2D1217]/80">
-            Professional certifications, cloud credentials, and specialized technical training courses.
+          <p className="text-sm sm:text-base text-[#2D1217]/80 dark:text-[#F5EFE6]/80">
+            Formal technical certifications, cloud credentials, and active learning tracks.
           </p>
           <div className="w-20 h-1 bg-[#D96B43] rounded-full mx-auto mt-4" />
         </FadeInView>
 
-        {/* Certificates Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {certificates.map((cert, index) => {
-            const isInProgress = cert.status === "in-progress" || cert.issueDate === "In Progress";
+        {/* Status Filter Buttons */}
+        <div className="flex items-center justify-center gap-2 mb-12">
+          {[
+            { id: "all", label: "All Credentials" },
+            { id: "completed", label: "Completed Certifications" },
+            { id: "in-progress", label: "In Progress Tracks" },
+          ].map((btn) => (
+            <button
+              key={btn.id}
+              onClick={() => setFilterStatus(btn.id as typeof filterStatus)}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                filterStatus === btn.id
+                  ? "bg-[#D96B43] text-white shadow-sm font-bold"
+                  : "bg-[#F5EFE6] dark:bg-[#2C161D] text-[#4A1D24] dark:text-[#FDFBF7] hover:bg-[#E8DFC8] dark:hover:bg-[#3D2028] border border-[#E8DFC8] dark:border-[#42222A]"
+              }`}
+            >
+              {btn.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Certificate Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredCerts.map((cert, index) => {
+            const isCompleted = (cert.status || "completed") === "completed";
             return (
               <motion.div
                 key={cert.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                onClick={() => setSelectedCert(cert)}
-                className="group cursor-pointer p-6 sm:p-8 rounded-3xl bg-[#FFFDF9] border border-[#E8DFC8] hover:border-[#D96B43] shadow-sm hover:shadow-md transition-all duration-300 flex items-start gap-5"
+                className="p-6 rounded-3xl bg-[#FFFDF9] dark:bg-[#231217] border border-[#E8DFC8] dark:border-[#3D2028] hover:border-[#D96B43] dark:hover:border-[#E08E53] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
               >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#F5EFE6] border border-[#E8DFC8] flex items-center justify-center text-[#D96B43] shrink-0 group-hover:scale-105 transition-transform">
-                  <BookOpen className="w-6 h-6" />
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D96B43] bg-[#F5EFE6] px-2.5 py-0.5 rounded-full border border-[#E8DFC8]">
-                      {cert.category}
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span
+                      className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full flex items-center gap-1 border ${
+                        isCompleted
+                          ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
+                          : "bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800"
+                      }`}
+                    >
+                      {isCompleted ? <CheckCircle className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
+                      {isCompleted ? "Completed" : "In Progress"}
                     </span>
-                    {isInProgress ? (
-                      <span className="text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300 flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        In Progress
-                      </span>
-                    ) : (
-                      <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3" />
-                        Completed
-                      </span>
-                    )}
+                    <span className="text-[11px] font-semibold text-[#2D1217]/60 dark:text-[#F5EFE6]/60">
+                      {cert.issueDate}
+                    </span>
                   </div>
 
-                  <h3 className="font-editorial text-lg font-bold text-[#4A1D24] truncate group-hover:text-[#D96B43] transition-colors">
+                  <h3 className="font-editorial text-lg font-bold text-[#4A1D24] dark:text-[#FDFBF7] mb-2 leading-snug">
                     {cert.title}
                   </h3>
-                  <p className="text-xs font-semibold text-[#2D1217]/70 truncate mt-1">
+
+                  <p className="text-xs font-semibold text-[#D96B43] dark:text-[#E08E53] mb-3">
                     {cert.issuer}
                   </p>
 
-                  <div className="mt-4 pt-3 border-t border-[#E8DFC8] flex items-center justify-between">
-                    <span className="text-[11px] font-mono text-[#2D1217]/60">
-                      {cert.issueDate}
-                    </span>
-                    <span className="text-xs font-bold text-[#D96B43] flex items-center gap-1">
-                      View Credential &rarr;
-                    </span>
-                  </div>
+                  <p className="text-xs text-[#2D1217]/75 dark:text-[#F5EFE6]/75 leading-relaxed line-clamp-3 mb-4">
+                    {cert.description}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-[#E8DFC8] dark:border-[#3D2028] flex items-center justify-between">
+                  <span className="text-[10px] font-mono text-[#2D1217]/50 dark:text-[#F5EFE6]/50 truncate max-w-[160px]">
+                    ID: {cert.credentialId}
+                  </span>
+                  {cert.credentialUrl && (
+                    <a
+                      href={cert.credentialUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-xs font-bold text-[#D96B43] dark:text-[#E08E53] hover:underline flex items-center gap-1"
+                    >
+                      Verify <ExternalLink className="w-3 h-3" />
+                    </a>
+                  )}
                 </div>
               </motion.div>
             );
           })}
         </div>
       </div>
-
-      {/* Reader Modal */}
-      <AnimatePresence>
-        {selectedCert && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm font-sans">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.25 }}
-              className="relative w-full max-w-2xl bg-[#FFFDF9] border border-[#E8DFC8] rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden text-[#2D1217]"
-            >
-              <div className="flex items-start justify-between border-b border-[#E8DFC8] pb-4 mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#D96B43]/10 text-[#D96B43] flex items-center justify-center">
-                    <ShieldCheck className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold text-[#D96B43] uppercase tracking-widest block">
-                      Credential Details
-                    </span>
-                    <h3 className="font-editorial text-2xl font-bold text-[#4A1D24]">
-                      {selectedCert.title}
-                    </h3>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setSelectedCert(null)}
-                  className="p-2 rounded-full text-gray-400 hover:text-[#4A1D24] hover:bg-[#F5EFE6] transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="space-y-4 mb-6 text-xs sm:text-sm">
-                <div className="p-4 rounded-2xl bg-[#F5EFE6]/60 border border-[#E8DFC8] grid grid-cols-2 gap-4">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#2D1217]/60 block mb-1">
-                      Issuing Organization
-                    </span>
-                    <span className="font-bold text-[#4A1D24]">{selectedCert.issuer}</span>
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#2D1217]/60 block mb-1">
-                      Date Issued / Status
-                    </span>
-                    <span className="font-bold text-[#4A1D24]">{selectedCert.issueDate}</span>
-                  </div>
-                  {selectedCert.credentialId && (
-                    <div className="col-span-2">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#2D1217]/60 block mb-1">
-                        Credential ID
-                      </span>
-                      <span className="font-mono text-[#2D1217] font-semibold">{selectedCert.credentialId}</span>
-                    </div>
-                  )}
-                </div>
-
-                {selectedCert.tags && (
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {selectedCert.tags.map((t, i) => (
-                      <span key={i} className="px-3 py-1 rounded-xl bg-[#F5EFE6] border border-[#E8DFC8] text-xs font-semibold text-[#4A1D24]">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div className="pt-4 border-t border-[#E8DFC8] flex items-center justify-end gap-3">
-                {selectedCert.credentialUrl && (
-                  <a
-                    href={selectedCert.credentialUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="px-5 py-2.5 rounded-xl bg-[#D96B43] hover:bg-[#C55A32] text-white text-xs font-bold flex items-center gap-2 transition-colors shadow-sm"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span>Verify Credential</span>
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

@@ -23,7 +23,7 @@ const initialHero: HeroData = {
   subtitle: "Building modern web applications with React, Next.js, Node.js and modern backend technologies.",
   description: "Focused on clean frontend architecture, reliable REST APIs, database management, and responsive user experiences.",
   resumeUrl: "/resume.pdf",
-  primaryCtaText: "View Projects",
+  primaryCtaText: "Explore Project Lab",
   primaryCtaUrl: "#projects",
   secondaryCtaText: "Download Resume",
   secondaryCtaUrl: "/resume.pdf",
@@ -51,7 +51,7 @@ const initialHero: HeroData = {
 const initialAbout: AboutData = {
   heading: "Passionate Full-Stack Developer",
   subheading: "Building responsive frontend interfaces and reliable backend services.",
-  description: "I am a Full-Stack Developer with hands-on experience developing web applications using React, Next.js, Node.js, and database technologies. I enjoy solving practical problems, writing clean code, and creating intuitive digital experiences.",
+  description: "I am Faijan Anwar, a Full-Stack Developer focused on building clean, responsive web applications and reliable backend database services. My engineering work spans frontend user interfaces created with React and Next.js, and backend API integration using Node.js, Express, and PostgreSQL.",
   highlights: [
     "Frontend Development (React, Next.js, Tailwind CSS)",
     "Backend APIs & Server Scripting (Node.js, Express, REST APIs)",
@@ -65,14 +65,14 @@ const initialAbout: AboutData = {
     { label: "Status", value: "Available for Roles" },
   ],
   timeline: [
+    { year: "MAY 2026 – PRESENT", title: "Full Stack Engineer (Orinson Technologies)", description: "Collaborating with cross-functional teams to build and optimize responsive web applications." },
+    { year: "MAY 2026 – PRESENT", title: "Web Developer (Global IT Providers)", description: "Contributing to web development contracts with focus on database design and modular React components." },
     { year: "May 2 – Aug 2", title: "Web Developer Intern", description: "Worked on responsive web interfaces, frontend UI components, API integration, and web feature development." },
-    { year: "2025 – 2027", title: "Master of Computer Applications (MCA)", description: "Pursuing MCA in Computer Science at Poornima University, focusing on software architecture and system design." },
-    { year: "2020 – 2024", title: "Bachelor of Technology (B.Tech) CSE", description: "Graduated with a degree in Computer Science & Engineering, studying algorithms, databases, and web technologies." },
   ],
   avatarUrl: "/profile.jpg",
 };
 
-// Authentic Skills using standard industry categories (No generic percentage bars, no exaggerated labels)
+// Standard Industry Skills (No generic percentage bars, no exaggerated labels)
 const initialSkills: SkillItem[] = [
   { id: "1", name: "React", category: "Frontend", level: 90, experienceYears: "", iconName: "Code", color: "#D96B43", order: 1 },
   { id: "2", name: "Next.js", category: "Frontend", level: 88, experienceYears: "", iconName: "Code", color: "#4A1D24", order: 2 },
@@ -84,21 +84,54 @@ const initialSkills: SkillItem[] = [
   { id: "8", name: "REST APIs", category: "Backend", level: 88, experienceYears: "", iconName: "Boxes", color: "#D96B43", order: 8 },
   { id: "9", name: "PostgreSQL", category: "Database", level: 82, experienceYears: "", iconName: "Database", color: "#2D1217", order: 9 },
   { id: "10", name: "Supabase", category: "Database", level: 85, experienceYears: "", iconName: "Database", color: "#E08E53", order: 10 },
-  { id: "11", name: "Red Hat Linux (RH124)", category: "Cloud & DevOps", level: 85, experienceYears: "", iconName: "Cloud", color: "#4A1D24", order: 11 },
-  { id: "12", name: "Google Cloud Platform", category: "Cloud & DevOps", level: 80, experienceYears: "", iconName: "Cloud", color: "#3B5998", order: 12 },
-  { id: "13", name: "Git & GitHub", category: "Tools", level: 88, experienceYears: "", iconName: "Terminal", color: "#D96B43", order: 13 },
-  { id: "14", name: "Web Crypto API", category: "Tools & Security", level: 82, experienceYears: "", iconName: "Shield", color: "#4A1D24", order: 14 },
+  { id: "11", name: "MongoDB", category: "Database", level: 80, experienceYears: "", iconName: "Database", color: "#4A1D24", order: 11 },
+  { id: "12", name: "Red Hat Linux (RH124)", category: "Cloud & DevOps", level: 85, experienceYears: "", iconName: "Cloud", color: "#4A1D24", order: 12 },
+  { id: "13", name: "Google Cloud Platform", category: "Cloud & DevOps", level: 80, experienceYears: "", iconName: "Cloud", color: "#3B5998", order: 13 },
+  { id: "14", name: "Git & GitHub", category: "Tools", level: 88, experienceYears: "", iconName: "Terminal", color: "#D96B43", order: 14 },
+  { id: "15", name: "Web Crypto API", category: "Tools & Security", level: 82, experienceYears: "", iconName: "Shield", color: "#4A1D24", order: 15 },
 ];
 
-// Authentic Internship Experience (Questionable senior/freelance entries moved to archived list)
+// Authentic & User-Provided Experience Timeline
 const initialExperiences: ExperienceItem[] = [
+  {
+    id: "exp-orinson",
+    company: "ORINSON TECHNOLOGIES PRIVATE LIMITED",
+    position: "FULL STACK ENGINEER",
+    duration: "MAY 2026 – PRESENT",
+    startDate: "MAY 2026",
+    isCurrentJob: true,
+    description: "Collaborating with a cross-functional team in a virtual environment to design, build, and optimize responsive full-stack web applications with modern architectures.",
+    techStack: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
+    achievements: [
+      "Collaborating in virtual environments to coordinate team sprints.",
+      "Structuring clean frontend interfaces and backend database connections.",
+      "Optimizing application page speeds and codebase modularity.",
+    ],
+    order: 1,
+  },
+  {
+    id: "exp-globalit",
+    company: "GLOBAL IT PROVIDERS",
+    position: "WEB DEVELOPER",
+    duration: "MAY 2026 – PRESENT",
+    startDate: "MAY 2026",
+    isCurrentJob: true,
+    description: "Contributing to end-to-end web development contracts with focus on clean codebase architecture, database integration, and high-performance client interfaces.",
+    techStack: ["React", "CSS Variables", "PostgreSQL", "MongoDB"],
+    achievements: [
+      "Assisting in PostgreSQL/MongoDB database design and index optimization.",
+      "Designing highly modular client-side components with React and CSS variables.",
+      "Ensuring seamless application flow and responsiveness under senior review.",
+    ],
+    order: 2,
+  },
   {
     id: "exp-intern",
     company: "Web Development Internship",
-    position: "Web Developer Intern",
-    duration: "May 2 – August 2",
-    startDate: "May 2",
-    endDate: "August 2",
+    position: "WEB DEVELOPER INTERN",
+    duration: "MAY 2 – AUGUST 2",
+    startDate: "MAY 2",
+    endDate: "AUGUST 2",
     isCurrentJob: false,
     description: "Developed and maintained responsive web interfaces, implemented user-facing frontend features, and integrated backend API endpoints.",
     techStack: ["HTML5", "CSS3", "JavaScript", "React", "REST APIs", "Git"],
@@ -107,7 +140,7 @@ const initialExperiences: ExperienceItem[] = [
       "Integrated REST API endpoints for dynamic content rendering.",
       "Collaborated on code reviews, debugging, and cross-browser testing.",
     ],
-    order: 1,
+    order: 3,
   },
 ];
 
@@ -147,8 +180,68 @@ const initialEducation: EducationItem[] = [
   },
 ];
 
-// Real Projects with simple, authentic names and descriptions
+// Real Projects including DevBlog Platform, SecureVault, Crypto Profit Calculator, DAO Governance System
 const initialProjects: ProjectItem[] = [
+  {
+    id: "devblog-platform",
+    slug: "devblog-platform",
+    title: "DevBlog Platform",
+    category: "Full Stack SaaS",
+    type: "fullstack",
+    overview: "A full-stack blogging platform featuring authentication, markdown editing, role-based permissions, PostgreSQL storage, and a scalable REST API architecture.",
+    problem: "Content creators need a lightweight, fast blogging platform with Markdown rendering and secure database authorization.",
+    solution: "Architected a full-stack SaaS platform with role-based access control, Zod schema validation, and PostgreSQL database storage.",
+    architecture: "React + TypeScript frontend powered by Node.js/Express REST API endpoints and PostgreSQL via Supabase.",
+    techStack: {
+      Frontend: ["React", "TypeScript", "Vite", "Tailwind CSS"],
+      Backend: ["Node.js", "Express.js", "Zod", "PostgreSQL", "Supabase"],
+    },
+    challenges: [
+      {
+        challenge: "Role-based authorization and schema validation",
+        solution: "Implemented Zod data validation and JWT middleware authentication.",
+      },
+    ],
+    features: ["Markdown Post Editor", "Role-Based Access Control", "PostgreSQL Database Storage", "REST API Architecture"],
+    lessons: ["Zod schema validation", "Full-stack SaaS architecture"],
+    github: "", // USER INPUT REQUIRED in MISSING_USER_DATA.md
+    live: "",   // USER INPUT REQUIRED in MISSING_USER_DATA.md
+    thumbnailUrl: "/projects/portfolio-os.jpg",
+    featured: true,
+    status: "published",
+    priority: 1,
+    tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Supabase"],
+  },
+  {
+    id: "secure-vault",
+    slug: "secure-vault",
+    title: "SecureVault",
+    category: "Security Engineering",
+    type: "fullstack",
+    overview: "An encrypted notes application implementing end-to-end encryption, AES-GCM cryptography, JWT authentication, secure cookies, and defense-in-depth architecture.",
+    problem: "Storing sensitive notes on remote servers requires zero-knowledge client encryption to prevent unauthorized data exposure.",
+    solution: "Integrated Web Crypto API AES-GCM encryption client-side combined with JWT cookie authentication.",
+    architecture: "Client-side AES-GCM key derivation coupled with Express backend and MongoDB database storage.",
+    techStack: {
+      Frontend: ["React", "Tailwind CSS", "Web Crypto API"],
+      Backend: ["Node.js", "Express", "MongoDB", "JWT", "bcrypt", "AES-GCM"],
+    },
+    challenges: [
+      {
+        challenge: "Client-side encryption key handling",
+        solution: "Utilized Web Crypto API subtle crypto interface for safe key derivation.",
+      },
+    ],
+    features: ["AES-GCM Encryption", "JWT Cookie Authentication", "bcrypt Password Hashing", "Defense-in-Depth Architecture"],
+    lessons: ["Web Cryptography API", "Secure Cookie Management"],
+    github: "", // USER INPUT REQUIRED in MISSING_USER_DATA.md
+    live: "",   // USER INPUT REQUIRED in MISSING_USER_DATA.md
+    thumbnailUrl: "/projects/sec-vault.jpg",
+    featured: true,
+    status: "published",
+    priority: 2,
+    tags: ["React", "AES-GCM", "Node.js", "Express", "MongoDB"],
+  },
   {
     id: "crypto-profit-calculator",
     slug: "crypto-profit-calculator",
@@ -176,7 +269,7 @@ const initialProjects: ProjectItem[] = [
     thumbnailUrl: "/projects/crypto-calc.jpg",
     featured: true,
     status: "published",
-    priority: 1,
+    priority: 3,
     tags: ["React", "Tailwind CSS", "JavaScript", "Web App"],
   },
   {
@@ -206,68 +299,8 @@ const initialProjects: ProjectItem[] = [
     thumbnailUrl: "/projects/dao-gov.jpg",
     featured: true,
     status: "published",
-    priority: 2,
-    tags: ["React", "TypeScript", "Node.js", "Web App"],
-  },
-  {
-    id: "security-vault",
-    slug: "double-encrypted-notes-vault",
-    title: "Double-Encrypted Notes Vault",
-    category: "Security Project",
-    type: "fullstack",
-    overview: "A web application for creating secure notes using browser-based Web Crypto API encryption (AES-256-GCM) combined with server-side storage encryption.",
-    problem: "Standard web note applications store plain text data on servers, creating privacy vulnerabilities if database storage is exposed.",
-    solution: "Implemented client-side encryption so unencrypted note text is encrypted in the browser before network transmission.",
-    architecture: "Web Crypto API derives AES-GCM keys client-side; Node.js backend receives encrypted payloads for database storage.",
-    techStack: {
-      Frontend: ["Next.js", "TypeScript", "Tailwind CSS"],
-      Backend: ["Node.js", "Web Crypto API", "PostgreSQL"],
-    },
-    challenges: [
-      {
-        challenge: "Browser-side cryptographic key derivation",
-        solution: "Utilized Web Crypto API subtle crypto interface for safe browser-side key handling.",
-      },
-    ],
-    features: ["Client-Side AES Encryption", "Secure Note Storage", "Clean Dark Mode UI"],
-    lessons: ["Browser Web Crypto API integration", "Data privacy patterns"],
-    github: "https://github.com/FAIJANANWAR",
-    live: "https://faijan.in",
-    thumbnailUrl: "/projects/sec-vault.jpg",
-    featured: true,
-    status: "published",
-    priority: 3,
-    tags: ["Next.js", "TypeScript", "Web Crypto API", "Security"],
-  },
-  {
-    id: "portfolio-os",
-    slug: "portfolio-operating-system",
-    title: "Portfolio OS & Admin CMS",
-    category: "Full-Stack Project",
-    type: "fullstack",
-    overview: "A full-stack developer portfolio featuring interactive section stations and a private admin dashboard for updating site content.",
-    problem: "Updating portfolio content usually requires editing source files directly and redeploying the entire codebase.",
-    solution: "Built a dynamic portfolio with an admin control room to edit projects, skills, certificates, and site settings directly.",
-    architecture: "Next.js App Router with Supabase authentication and backend service integration.",
-    techStack: {
-      Frontend: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-      Backend: ["Supabase", "Next.js Route Handlers"],
-    },
-    challenges: [
-      {
-        challenge: "Dynamic content administration",
-        solution: "Built unified data service providing CMS updates with fallback storage support.",
-      },
-    ],
-    features: ["Interactive Section Stations", "Admin CMS Dashboard", "Responsive Design"],
-    lessons: ["Next.js App Router architecture", "CMS dashboard engineering"],
-    github: "https://github.com/FAIJANANWAR/faijan-web3-portfolio",
-    live: "https://faijan.in",
-    thumbnailUrl: "/projects/portfolio-os.jpg",
-    featured: true,
-    status: "published",
     priority: 4,
-    tags: ["Next.js", "React", "Supabase", "Tailwind CSS"],
+    tags: ["React", "TypeScript", "Node.js", "Web App"],
   },
 ];
 
@@ -450,23 +483,23 @@ const initialBlogs: BlogPostItem[] = [
 
 const initialContact: ContactInfoData = {
   email: "contact@faijan.in",
-  phone: "+91 70147 02263",
-  location: "India",
-  whatsapp: "+91 70147 02263",
-  github: "https://github.com/faijananwar",
-  linkedin: "https://www.linkedin.com/in/faijan-anwar/",
-  twitter: "https://x.com/faijananwar",
-  availability: "Open for Full-Stack Developer roles and contract work.",
+  phone: "",
+  location: "India — Available for Remote Work",
+  whatsapp: "",
+  github: "https://github.com/FAIJANANWAR",
+  linkedin: "https://linkedin.com/in/faijan-anwar/",
+  twitter: "https://x.com/FaijanAnwar",
+  availability: "Available for Full-Stack Developer roles.",
   googleMapEmbedUrl: "https://maps.google.com/maps?q=India&t=&z=5&ie=UTF8&iwloc=&output=embed",
 };
 
 const initialMessages: ContactMessage[] = [
   {
     id: "msg-1",
-    name: "Recruiter / Hiring Manager",
-    email: "hiring@techcompany.com",
+    name: "Hiring Manager",
+    email: "hiring@company.com",
     subject: "Full-Stack Developer Opportunity",
-    message: "Hi Faijan, I noticed your portfolio and projects in React and Node.js. We have an open Full-Stack Developer position.",
+    message: "Hi Faijan, I reviewed your DevBlog Platform and SecureVault projects. We have an open Full-Stack position.",
     createdAt: "2026-08-04 14:30",
     read: false,
   },
@@ -474,9 +507,9 @@ const initialMessages: ContactMessage[] = [
 
 const initialNavigation: NavigationLink[] = [
   { id: "nav-1", label: "About", href: "#about", order: 1, isVisible: true },
-  { id: "nav-2", label: "Experience", href: "#experience", order: 2, isVisible: true },
+  { id: "nav-2", label: "Skills", href: "#skills", order: 2, isVisible: true },
   { id: "nav-3", label: "Projects", href: "#projects", order: 3, isVisible: true },
-  { id: "nav-4", label: "Skills", href: "#skills", order: 4, isVisible: true },
+  { id: "nav-4", label: "Experience", href: "#experience", order: 4, isVisible: true },
   { id: "nav-5", label: "Certificates", href: "#certificates", order: 5, isVisible: true },
   { id: "nav-6", label: "Contact", href: "#contact", order: 6, isVisible: true },
 ];
@@ -487,17 +520,17 @@ const initialFooter: FooterConfig = {
   quickLinks: [
     { label: "About", href: "#about" },
     { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+    { label: "Experience", href: "#experience" },
   ],
   socialLinks: [
-    { platform: "GitHub", url: "https://github.com/faijananwar" },
-    { platform: "LinkedIn", url: "https://www.linkedin.com/in/faijan-anwar/" },
-    { platform: "Twitter", url: "https://x.com/faijananwar" },
+    { platform: "GitHub", url: "https://github.com/FAIJANANWAR" },
+    { platform: "LinkedIn", url: "https://linkedin.com/in/faijan-anwar/" },
+    { platform: "Twitter", url: "https://x.com/FaijanAnwar" },
   ],
 };
 
 const initialSettings: SiteSettings = {
-  themeMode: "dark",
+  themeMode: "system",
   accentColor: "#D96B43",
   customCursor: true,
   animationsEnabled: true,
@@ -507,10 +540,10 @@ const initialSettings: SiteSettings = {
 
 const initialSeo: SeoSettings = {
   siteTitle: "Faijan Anwar | Full-Stack Developer",
-  siteDescription: "Full-Stack Developer building modern web applications with React, Next.js, Node.js and modern backend technologies.",
+  siteDescription: "Full-Stack Developer building modern web applications with React, Next.js, Node.js, TypeScript, PostgreSQL, and Supabase.",
   keywords: ["Full-Stack Developer", "React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "JavaScript"],
   ogImageUrl: "/og-image.jpg",
-  twitterHandle: "@faijananwar",
+  twitterHandle: "@FaijanAnwar",
   canonicalUrl: "https://faijan.in",
   robotsTxt: "User-agent: *\nAllow: /",
   schemaJson: JSON.stringify({
@@ -655,7 +688,7 @@ export const portfolioService = {
       totalBlogPosts: blogs.length,
       githubClicks: 420,
       projectClicks: 560,
-      topViewedProject: projects[0]?.title || "Crypto Profit Calculator",
+      topViewedProject: projects[0]?.title || "DevBlog Platform",
       weeklyVisitors: [
         { day: "Mon", count: 120 },
         { day: "Tue", count: 180 },

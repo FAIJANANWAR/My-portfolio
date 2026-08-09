@@ -2,85 +2,76 @@
 
 import { motion } from "framer-motion";
 import FadeInView from "@/components/ui/FadeInView";
-import { Award, ShieldCheck, Cpu, Code2 } from "lucide-react";
+import { GraduationCap, ShieldCheck, Cloud, Award } from "lucide-react";
 
-const achievements = [
+const milestones = [
   {
-    title: "Full-Stack Web Development",
-    category: "Web Engineering",
-    description: "Developed and deployed web applications, REST API services, and client interfaces using React, Next.js, Node.js, and PostgreSQL.",
-    icon: Code2,
-    year: "2024 – Present",
-  },
-  {
-    title: "Client-Side Encryption Integration",
-    category: "Web Security",
-    description: "Implemented browser-side Web Crypto API encryption (AES-256-GCM) combined with backend database storage.",
-    icon: ShieldCheck,
-    year: "2025",
-  },
-  {
-    title: "Google Cloud & Apigee Security Credentials",
-    category: "Cloud & APIs",
-    description: "Earned credentials in API Security on Google Cloud Apigee Platform & Google Cloud Computing Foundations.",
-    icon: Cpu,
-    year: "2024",
-  },
-  {
+    icon: GraduationCap,
     title: "Master of Computer Applications (MCA)",
-    category: "Academic Qualification",
-    description: "Pursuing MCA in Computer Science at Poornima University (2025 – 2027) with focus on software design and database systems.",
-    icon: Award,
-    year: "2025 – 2027",
+    sub: "Poornima University (2025 – 2027)",
+    desc: "Advanced studies in Software Engineering, Cloud Computing, Database Management, and Web Architecture.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Bachelor of Technology (B.Tech)",
+    sub: "Computer Science & Engineering (2020 – 2024)",
+    desc: "Solid theoretical and practical grounding in Data Structures, Algorithms, Object-Oriented Programming, and Web Development.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Red Hat System Administration (RH124)",
+    sub: "Red Hat Certified Academy",
+    desc: "Hands-on expertise in Red Hat Enterprise Linux system management, command line operations, and security administration.",
+  },
+  {
+    icon: Cloud,
+    title: "Google Cloud & Apigee API Security",
+    sub: "Google Cloud Badges",
+    desc: "Credentialed in Cloud Computing Fundamentals and Google Cloud Apigee API Security (OAuth, JWT, API Threat Protection).",
   },
 ];
 
 export default function ProblemSolving() {
   return (
-    <section id="achievements" className="py-20 sm:py-28 relative overflow-hidden bg-[#FDFBF7] text-[#2D1217] border-b border-[#E8DFC8]">
+    <section className="py-20 sm:py-28 relative overflow-hidden bg-[#FDFBF7] dark:bg-[#170D10] text-[#2D1217] dark:text-[#F5EFE6] border-b border-[#E8DFC8] dark:border-[#3D2028] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
-        <FadeInView className="mb-14 text-center max-w-3xl mx-auto">
+        <FadeInView className="mb-12 text-center max-w-3xl mx-auto">
           <span className="text-xs font-bold text-[#D96B43] uppercase tracking-[0.25em] mb-2 block">
-            Academic & Technical Milestones
+            Academic & Technical Credentials
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold font-editorial text-[#4A1D24] mb-4">
+          <h2 className="text-3xl sm:text-5xl font-bold font-editorial text-[#4A1D24] dark:text-[#FDFBF7] mb-4">
             Milestones & Achievements
           </h2>
-          <p className="text-sm sm:text-base text-[#2D1217]/80">
-            Verified academic qualifications, technical credentials, and software milestones.
+          <p className="text-sm sm:text-base text-[#2D1217]/80 dark:text-[#F5EFE6]/80">
+            A summary of formal academic qualifications and verified professional technical credentials.
           </p>
           <div className="w-20 h-1 bg-[#D96B43] rounded-full mx-auto mt-4" />
         </FadeInView>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {achievements.map((ach, index) => {
-            const Icon = ach.icon;
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {milestones.map((item, idx) => {
+            const Icon = item.icon;
             return (
               <motion.div
-                key={ach.title}
-                initial={{ opacity: 0, y: 20 }}
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.12 }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="p-6 sm:p-8 rounded-3xl bg-[#FFFDF9] border border-[#E8DFC8] shadow-sm flex items-start gap-5"
+                className="p-6 sm:p-8 rounded-3xl bg-[#FFFDF9] dark:bg-[#231217] border border-[#E8DFC8] dark:border-[#3D2028] shadow-sm hover:shadow-md transition-all flex items-start gap-5"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#D96B43]/10 border border-[#D96B43]/30 flex items-center justify-center text-[#D96B43] shrink-0">
+                <div className="w-12 h-12 rounded-2xl bg-[#F5EFE6] dark:bg-[#2C161D] border border-[#E8DFC8] dark:border-[#42222A] flex items-center justify-center text-[#D96B43] dark:text-[#E08E53] shrink-0">
                   <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D96B43] bg-[#F5EFE6] px-2.5 py-0.5 rounded-full border border-[#E8DFC8]">
-                      {ach.category}
-                    </span>
-                    <span className="text-xs font-semibold text-[#2D1217]/60">
-                      {ach.year}
-                    </span>
-                  </div>
-                  <h3 className="font-editorial text-xl font-bold text-[#4A1D24] mb-2">
-                    {ach.title}
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#D96B43] block mb-1">
+                    {item.sub}
+                  </span>
+                  <h3 className="font-editorial text-xl font-bold text-[#4A1D24] dark:text-[#FDFBF7] mb-2">
+                    {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#2D1217]/80 leading-relaxed">
-                    {ach.description}
+                  <p className="text-xs sm:text-sm text-[#2D1217]/80 dark:text-[#F5EFE6]/80 leading-relaxed">
+                    {item.desc}
                   </p>
                 </div>
               </motion.div>

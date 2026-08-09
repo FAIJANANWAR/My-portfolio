@@ -20,6 +20,19 @@
 :root {
   --background: #FDFBF7;
   --foreground: #2D1217;
+  --card-bg: #FFFDF9;
+  --card-border: #E8DFC8;
+  --heading-color: #4A1D24;
+  --badge-bg: #F5EFE6;
+}
+
+.dark {
+  --background: #170D10;
+  --foreground: #F5EFE6;
+  --card-bg: #231217;
+  --card-border: #3D2028;
+  --heading-color: #FDFBF7;
+  --badge-bg: #2C161D;
 }
 
 *, *::before, *::after {
@@ -38,6 +51,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Scrollbar */
@@ -45,19 +59,19 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F5EFE6;
+  background: var(--badge-bg);
 }
 ::-webkit-scrollbar-thumb {
   background: #D96B43;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #4A1D24;
+  background: #E08E53;
 }
 
 ::selection {
-  background: rgba(217, 107, 67, 0.25);
-  color: #2D1217;
+  background: rgba(217, 107, 67, 0.3);
+  color: var(--foreground);
 }
 
 /* ─── Editorial Design System Utilities ────────────────────────────────── */
@@ -67,22 +81,22 @@ body {
 }
 
 @utility editorial-card {
-  background: #FFFDF9;
-  border: 1px solid #E8DFC8;
-  box-shadow: 0 4px 20px rgba(45, 18, 23, 0.04);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 @utility editorial-badge {
-  background: #F5EFE6;
-  border: 1px solid #E8DFC8;
-  color: #4A1D24;
+  background: var(--badge-bg);
+  border: 1px solid var(--card-border);
+  color: var(--heading-color);
 }
 
 @utility bg-noise {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Float & Parallax Animations */
+/* Float Animations */
 @keyframes float-gentle {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }

@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import AdminBar from "@/components/admin/AdminBar";
 import BfCacheProvider from "@/components/ui/BfCacheProvider";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,20 +32,16 @@ export const metadata: Metadata = {
     template: "%s | Faijan Anwar",
   },
   description:
-    "Full-Stack Developer building scalable, reliable and user-focused web applications from frontend to backend with React, Node.js, TypeScript, PostgreSQL, and Supabase.",
+    "Full-Stack Developer building modern web applications with React, Next.js, Node.js, TypeScript, PostgreSQL, and Supabase.",
   keywords: [
     "Full-Stack Developer",
     "Software Engineer",
-    "Web Application Architecture",
     "React Developer",
     "Node.js Developer",
     "TypeScript",
     "PostgreSQL",
     "Supabase",
     "REST APIs",
-    "Database Engineering",
-    "System Architecture",
-    "Vercel",
     "Faijan Anwar",
     "India",
   ],
@@ -57,7 +54,7 @@ export const metadata: Metadata = {
     siteName: "Faijan Anwar — Full-Stack Developer",
     title: "Faijan Anwar | Full-Stack Developer",
     description:
-      "Full-Stack Developer building scalable, reliable and user-focused web applications from frontend to backend.",
+      "Full-Stack Developer building modern web applications with React, Next.js, Node.js and modern backend technologies.",
     images: [
       {
         url: "/og-image.jpg",
@@ -71,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Faijan Anwar | Full-Stack Developer",
     description:
-      "Full-Stack Developer building scalable, reliable and user-focused web applications from frontend to backend.",
+      "Full-Stack Developer building modern web applications with React, Next.js, Node.js and modern backend technologies.",
     images: ["/og-image.jpg"],
     creator: "@faijananwar",
   },
@@ -102,12 +99,27 @@ const jsonLd = {
     "https://x.com/faijananwar"
   ],
   "jobTitle": "Full-Stack Developer",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Freelance"
-  },
-  "description": "Full-Stack Developer building scalable, reliable and user-focused web applications from frontend to backend."
+  "description": "Full-Stack Developer building modern web applications with React, Next.js, Node.js and modern backend technologies."
 };
+
+const themeAntiFlashScript = `
+  (function() {
+    try {
+      var stored = localStorage.getItem('portfolio_theme');
+      var isDark = false;
+      if (stored === 'dark') {
+        isDark = true;
+      } else if (stored === 'system' || !stored) {
+        isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (e) {}
+  })();
+`;
 
 export default function RootLayout({
   children,
@@ -120,19 +132,24 @@ export default function RootLayout({
       className={`${inter.variable} ${newsreader.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-[var(--color-cream-bg,#FDFBF7)] text-[var(--color-dark-plum,#2D1217)] antialiased overflow-x-hidden pt-8 font-sans">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeAntiFlashScript }} />
+      </head>
+      <body className="min-h-screen bg-[var(--background,#FDFBF7)] text-[var(--foreground,#2D1217)] antialiased overflow-x-hidden pt-8 font-sans transition-colors duration-300">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <AdminBar />
-        <Navbar />
-        <BfCacheProvider>
-          <main className="flex flex-col min-h-screen">
-            {children}
-          </main>
-        </BfCacheProvider>
-        <Footer />
+        <ThemeProvider>
+          <AdminBar />
+          <Navbar />
+          <BfCacheProvider>
+            <main className="flex flex-col min-h-screen">
+              {children}
+            </main>
+          </BfCacheProvider>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
