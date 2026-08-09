@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import FadeInView from "@/components/ui/FadeInView";
 import { portfolioService } from "@/lib/services/portfolioService";
 import { CertificateItem } from "@/lib/types/portfolio";
-import { Award, ExternalLink, Download, X, BookOpen, ShieldCheck } from "lucide-react";
+import { ExternalLink, X, BookOpen, ShieldCheck, CheckCircle2, Clock } from "lucide-react";
 
 export default function CertificationsSection() {
   const [certificates, setCertificates] = useState<CertificateItem[]>([]);
@@ -20,66 +20,76 @@ export default function CertificationsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
         <FadeInView className="mb-14 text-center max-w-3xl mx-auto">
           <span className="text-xs font-bold text-[#D96B43] uppercase tracking-[0.25em] mb-2 block">
-            Academic & Professional Verification
+            Certifications & Training
           </span>
           <h2 className="text-3xl sm:text-5xl font-bold font-editorial text-[#4A1D24] mb-4">
-            Certificate Library & Archive
+            Certificates
           </h2>
           <p className="text-sm sm:text-base text-[#2D1217]/80">
-            Verified certifications, credentials, and academic qualifications.
+            Professional certifications, cloud credentials, and specialized technical training courses.
           </p>
           <div className="w-20 h-1 bg-[#D96B43] rounded-full mx-auto mt-4" />
         </FadeInView>
 
-        {/* ─── Bookshelf Archive Grid ────────────────────────────────────────── */}
+        {/* Certificates Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {certificates.map((cert, index) => (
-            <motion.div
-              key={cert.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              viewport={{ once: true }}
-              onClick={() => setSelectedCert(cert)}
-              className="group cursor-pointer p-6 sm:p-8 rounded-3xl bg-[#FFFDF9] border border-[#E8DFC8] hover:border-[#D96B43] shadow-sm hover:shadow-md transition-all duration-300 flex items-start gap-5"
-            >
-              {/* Illustrated Book / Scroll Icon Badge */}
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#F5EFE6] border border-[#E8DFC8] flex items-center justify-center text-[#D96B43] shrink-0 group-hover:scale-105 transition-transform">
-                <BookOpen className="w-6 h-6" />
-              </div>
-
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#D96B43] bg-[#F5EFE6] px-2.5 py-0.5 rounded-full border border-[#E8DFC8]">
-                    {cert.category}
-                  </span>
-                  <span className="text-xs font-semibold text-[#2D1217]/60">
-                    Issued {cert.issueDate}
-                  </span>
+          {certificates.map((cert, index) => {
+            const isInProgress = cert.status === "in-progress" || cert.issueDate === "In Progress";
+            return (
+              <motion.div
+                key={cert.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                viewport={{ once: true }}
+                onClick={() => setSelectedCert(cert)}
+                className="group cursor-pointer p-6 sm:p-8 rounded-3xl bg-[#FFFDF9] border border-[#E8DFC8] hover:border-[#D96B43] shadow-sm hover:shadow-md transition-all duration-300 flex items-start gap-5"
+              >
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#F5EFE6] border border-[#E8DFC8] flex items-center justify-center text-[#D96B43] shrink-0 group-hover:scale-105 transition-transform">
+                  <BookOpen className="w-6 h-6" />
                 </div>
 
-                <h3 className="font-editorial text-xl font-bold text-[#4A1D24] truncate group-hover:text-[#D96B43] transition-colors">
-                  {cert.title}
-                </h3>
-                <p className="text-xs font-semibold text-[#2D1217]/70 truncate mt-1">
-                  {cert.issuer}
-                </p>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D96B43] bg-[#F5EFE6] px-2.5 py-0.5 rounded-full border border-[#E8DFC8]">
+                      {cert.category}
+                    </span>
+                    {isInProgress ? (
+                      <span className="text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300 flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        In Progress
+                      </span>
+                    ) : (
+                      <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
+                        <CheckCircle2 className="w-3 h-3" />
+                        Completed
+                      </span>
+                    )}
+                  </div>
 
-                <div className="mt-4 pt-3 border-t border-[#E8DFC8] flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-[#2D1217]/60">
-                    ID: {cert.credentialId || "VERIFIED"}
-                  </span>
-                  <span className="text-xs font-bold text-[#D96B43] flex items-center gap-1">
-                    Open Archive &rarr;
-                  </span>
+                  <h3 className="font-editorial text-lg font-bold text-[#4A1D24] truncate group-hover:text-[#D96B43] transition-colors">
+                    {cert.title}
+                  </h3>
+                  <p className="text-xs font-semibold text-[#2D1217]/70 truncate mt-1">
+                    {cert.issuer}
+                  </p>
+
+                  <div className="mt-4 pt-3 border-t border-[#E8DFC8] flex items-center justify-between">
+                    <span className="text-[11px] font-mono text-[#2D1217]/60">
+                      {cert.issueDate}
+                    </span>
+                    <span className="text-xs font-bold text-[#D96B43] flex items-center gap-1">
+                      View Credential &rarr;
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
-      {/* ─── Interactive Reader Modal ────────────────────────────────────────── */}
+      {/* Reader Modal */}
       <AnimatePresence>
         {selectedCert && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm font-sans">
@@ -97,7 +107,7 @@ export default function CertificationsSection() {
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-[#D96B43] uppercase tracking-widest block">
-                      Credential Document
+                      Credential Details
                     </span>
                     <h3 className="font-editorial text-2xl font-bold text-[#4A1D24]">
                       {selectedCert.title}
@@ -122,7 +132,7 @@ export default function CertificationsSection() {
                   </div>
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#2D1217]/60 block mb-1">
-                      Date Issued
+                      Date Issued / Status
                     </span>
                     <span className="font-bold text-[#4A1D24]">{selectedCert.issueDate}</span>
                   </div>
@@ -147,7 +157,6 @@ export default function CertificationsSection() {
                 )}
               </div>
 
-              {/* Modal Actions */}
               <div className="pt-4 border-t border-[#E8DFC8] flex items-center justify-end gap-3">
                 {selectedCert.credentialUrl && (
                   <a
@@ -157,7 +166,7 @@ export default function CertificationsSection() {
                     className="px-5 py-2.5 rounded-xl bg-[#D96B43] hover:bg-[#C55A32] text-white text-xs font-bold flex items-center gap-2 transition-colors shadow-sm"
                   >
                     <ExternalLink className="w-4 h-4" />
-                    <span>Verify Credential URL</span>
+                    <span>Verify Credential</span>
                   </a>
                 )}
               </div>

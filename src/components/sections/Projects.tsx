@@ -23,18 +23,18 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
         <FadeInView className="mb-14 text-center max-w-3xl mx-auto">
           <span className="text-xs font-bold text-[#D96B43] uppercase tracking-[0.25em] mb-2 block">
-            Innovation Foundry & Technical Dossiers
+            Featured Applications & Codebases
           </span>
           <h2 className="text-3xl sm:text-5xl font-bold font-editorial text-[#4A1D24] mb-4">
-            Project Lab
+            Projects
           </h2>
           <p className="text-sm sm:text-base text-[#2D1217]/80">
-            Factual project engineering dossiers showcasing full-stack applications, state synchronization utilities, and distributed platforms.
+            A collection of web applications, calculation utilities, and full-stack projects built with clean frontend architecture and backend services.
           </p>
           <div className="w-20 h-1 bg-[#D96B43] rounded-full mx-auto mt-4" />
         </FadeInView>
 
-        {/* ─── Project Station Grid ────────────────────────────────────────────── */}
+        {/* Project Station Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
@@ -98,7 +98,7 @@ export default function Projects() {
                   ))}
                 </div>
                 <span className="text-xs font-bold text-[#D96B43] group-hover:underline flex items-center gap-1">
-                  Inspect Dossier &rarr;
+                  View Details &rarr;
                 </span>
               </div>
             </motion.div>
@@ -106,7 +106,7 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* ─── Technical Dossier Modal (Factual Content Only) ──────────────────── */}
+      {/* Project Details Modal */}
       <AnimatePresence>
         {selectedProject && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm font-sans">
@@ -121,7 +121,7 @@ export default function Projects() {
               <div className="flex items-start justify-between border-b border-[#E8DFC8] pb-6 mb-6">
                 <div>
                   <span className="text-xs font-bold text-[#D96B43] uppercase tracking-widest block mb-1">
-                    Technical Dossier • {selectedProject.category}
+                    {selectedProject.category}
                   </span>
                   <h3 className="font-editorial text-3xl font-bold text-[#4A1D24]">
                     {selectedProject.title}
@@ -135,14 +135,14 @@ export default function Projects() {
                 </button>
               </div>
 
-              {/* Problem & Solution (Only displayed if verified content exists) */}
+              {/* Problem & Solution */}
               {(selectedProject.problem || selectedProject.solution) && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   {selectedProject.problem && (
                     <div className="p-5 rounded-2xl bg-[#F5EFE6]/60 border border-[#E8DFC8]">
                       <h4 className="text-xs font-bold text-[#4A1D24] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                         <Cpu className="w-4 h-4 text-[#D96B43]" />
-                        Problem Statement
+                        Problem Solved
                       </h4>
                       <p className="text-xs sm:text-sm text-[#2D1217]/80 leading-relaxed">
                         {selectedProject.problem}
@@ -154,7 +154,7 @@ export default function Projects() {
                     <div className="p-5 rounded-2xl bg-[#F5EFE6]/60 border border-[#E8DFC8]">
                       <h4 className="text-xs font-bold text-[#4A1D24] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                         <CheckCircle2 className="w-4 h-4 text-emerald-700" />
-                        Engineering Solution
+                        Implementation & Solution
                       </h4>
                       <p className="text-xs sm:text-sm text-[#2D1217]/80 leading-relaxed">
                         {selectedProject.solution}
@@ -169,7 +169,7 @@ export default function Projects() {
                 <div className="mb-8 space-y-2">
                   <h4 className="text-xs font-bold text-[#4A1D24] uppercase tracking-wider flex items-center gap-1.5">
                     <Layers className="w-4 h-4 text-[#3B5998]" />
-                    System Architecture
+                    Architecture & Tech Patterns
                   </h4>
                   <p className="text-xs sm:text-sm text-[#2D1217]/80 leading-relaxed p-4 rounded-2xl bg-[#F5EFE6]/40 border border-[#E8DFC8]">
                     {selectedProject.architecture}

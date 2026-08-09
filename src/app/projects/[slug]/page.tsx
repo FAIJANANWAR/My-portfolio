@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const projectUrl = `${siteUrl}/projects/${project.slug}`;
 
   return {
-    title: `${project.title} | Technical Dossier`,
-    description: project.overview || `Technical engineering dossier for ${project.title} by Faijan Anwar.`,
+    title: `${project.title} | Faijan Anwar`,
+    description: project.overview || `Project details for ${project.title} by Faijan Anwar.`,
     openGraph: {
       title: `${project.title} — Faijan Anwar`,
       description: project.overview,
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.title} | Technical Dossier`,
+      title: `${project.title} | Faijan Anwar`,
       description: project.overview,
       creator: "@faijananwar",
     },
@@ -71,16 +71,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             className="inline-flex items-center gap-2 text-xs font-bold text-[#D96B43] hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Back to Project Lab</span>
+            <span>Back to Projects</span>
           </Link>
         </div>
 
-        {/* Dossier Card Container */}
+        {/* Project Details Card */}
         <article className="p-6 sm:p-10 rounded-3xl bg-[#FFFDF9] border border-[#E8DFC8] shadow-md space-y-8">
           {/* Header */}
           <div className="border-b border-[#E8DFC8] pb-6">
             <span className="text-xs font-bold text-[#D96B43] uppercase tracking-widest block mb-2">
-              Technical Dossier Station • {project.category}
+              {project.category}
             </span>
             <h1 className="font-editorial text-3xl sm:text-5xl font-bold text-[#4A1D24] leading-tight">
               {project.title}
@@ -99,7 +99,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 <div className="p-6 rounded-2xl bg-[#F5EFE6]/60 border border-[#E8DFC8]">
                   <h2 className="text-xs font-bold text-[#4A1D24] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                     <Cpu className="w-4 h-4 text-[#D96B43]" />
-                    Problem Statement
+                    Problem Solved
                   </h2>
                   <p className="text-xs sm:text-sm text-[#2D1217]/80 leading-relaxed">
                     {project.problem}
@@ -111,7 +111,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 <div className="p-6 rounded-2xl bg-[#F5EFE6]/60 border border-[#E8DFC8]">
                   <h2 className="text-xs font-bold text-[#4A1D24] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-emerald-700" />
-                    Engineering Solution
+                    Implementation & Solution
                   </h2>
                   <p className="text-xs sm:text-sm text-[#2D1217]/80 leading-relaxed">
                     {project.solution}
@@ -126,7 +126,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <div className="space-y-2">
               <h2 className="text-xs font-bold text-[#4A1D24] uppercase tracking-wider flex items-center gap-1.5">
                 <Layers className="w-4 h-4 text-[#3B5998]" />
-                System Architecture
+                Architecture & Tech Patterns
               </h2>
               <p className="text-xs sm:text-sm text-[#2D1217]/80 leading-relaxed p-5 rounded-2xl bg-[#F5EFE6]/40 border border-[#E8DFC8]">
                 {project.architecture}

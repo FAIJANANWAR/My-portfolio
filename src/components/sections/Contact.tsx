@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import FadeInView from "@/components/ui/FadeInView";
 import { portfolioService } from "@/lib/services/portfolioService";
 import { ContactInfoData } from "@/lib/types/portfolio";
-import { Mail, Send, CheckCircle2, AlertCircle, Radio, MapPin } from "lucide-react";
+import { Mail, Send, CheckCircle2, AlertCircle, MapPin } from "lucide-react";
 import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
 
 export default function Contact() {
@@ -25,7 +25,6 @@ export default function Contact() {
     e.preventDefault();
     setErrorMessage("");
 
-    // Client-side validation check
     if (!name.trim() || !email.trim() || !message.trim()) {
       setErrorMessage("Please complete all required fields (Name, Email, and Message).");
       setStatus("error");
@@ -42,7 +41,6 @@ export default function Contact() {
     setStatus("submitting");
 
     try {
-      // 1. Save to CMS Admin Inbox
       await portfolioService.addMessage({
         name: name.trim(),
         email: email.trim(),
@@ -50,7 +48,6 @@ export default function Contact() {
         message: message.trim(),
       });
 
-      // 2. Post to API Endpoint if configured
       try {
         await fetch("/api/contact", {
           method: "POST",
@@ -63,7 +60,7 @@ export default function Contact() {
           }),
         });
       } catch {
-        // Soft fallback if API server email is offline
+        // Soft fallback
       }
 
       setStatus("success");
@@ -72,42 +69,36 @@ export default function Contact() {
       setSubject("");
       setMessage("");
     } catch {
-      setErrorMessage("An error occurred while saving your transmission. Please try again.");
+      setErrorMessage("An error occurred while sending your message. Please try again.");
       setStatus("error");
     }
   };
 
   return (
     <section id="contact" className="py-20 sm:py-28 relative overflow-hidden bg-[#2D1217] text-[#FDFBF7] font-sans">
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-        <div className="absolute inset-0 bg-noise" />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#D96B43]/20 blur-[120px] rounded-full" />
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
         <FadeInView className="mb-14 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#4A1D24] text-xs font-bold text-[#E08E53] uppercase tracking-widest mb-3 border border-[#E08E53]/30">
-            <Radio className="w-3.5 h-3.5 animate-pulse" />
-            Communication Radio Station
-          </div>
+          <span className="text-xs font-bold text-[#E08E53] uppercase tracking-[0.25em] mb-2 block">
+            Let&apos;s Connect
+          </span>
           <h2 className="text-3xl sm:text-5xl font-bold font-editorial text-white mb-4">
-            Transmit a Message
+            Contact Me
           </h2>
           <p className="text-sm sm:text-base text-[#F5EFE6]/80">
-            Open for contract development, technical consultation, and full-time engineering roles.
+            Open for Full-Stack Developer roles, web engineering projects, and technical collaborations.
           </p>
           <div className="w-20 h-1 bg-[#D96B43] rounded-full mx-auto mt-4" />
         </FadeInView>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Column: Station Info */}
+          {/* Left Column: Contact Details */}
           <div className="lg:col-span-5 space-y-6">
             <div className="p-6 sm:p-8 rounded-3xl bg-[#4A1D24]/60 border border-[#E08E53]/30 backdrop-blur-md space-y-6">
               <h3 className="font-editorial text-2xl font-bold text-white">
-                Station FAIJAN-ANWAR
+                Faijan Anwar
               </h3>
               <p className="text-xs sm:text-sm text-[#F5EFE6]/80 leading-relaxed">
-                Send a direct transmission for full-stack engineering contracts, backend development, or web applications.
+                Feel free to send a message regarding job opportunities, freelance web development, or general inquiries.
               </p>
 
               <div className="space-y-4 pt-2">
@@ -117,7 +108,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#E08E53] block">
-                      Primary Email
+                      Email
                     </span>
                     <a href={`mailto:${contactInfo?.email || "contact@faijan.in"}`} className="text-xs sm:text-sm text-white hover:underline">
                       {contactInfo?.email || "contact@faijan.in"}
@@ -134,13 +125,13 @@ export default function Contact() {
                       Location
                     </span>
                     <span className="text-xs sm:text-sm text-white">
-                      {contactInfo?.location || "India"} (Available Worldwide)
+                      {contactInfo?.location || "India"} (Available for Remote Work)
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Social Channels */}
+              {/* Social Links */}
               <div className="pt-4 border-t border-white/10 flex items-center gap-3">
                 <a
                   href={contactInfo?.github || "https://github.com/faijananwar"}
@@ -179,14 +170,14 @@ export default function Contact() {
               {status === "success" && (
                 <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="p-4 rounded-2xl bg-emerald-900/40 border border-emerald-500/30 flex items-center gap-3 text-xs text-emerald-300">
                   <CheckCircle2 className="w-5 h-5 shrink-0" />
-                  <span>Transmission received! Message saved to the Communication Inbox.</span>
+                  <span>Message sent successfully! Thank you for reaching out.</span>
                 </motion.div>
               )}
 
               {status === "error" && (
                 <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="p-4 rounded-2xl bg-red-900/40 border border-red-500/30 flex items-center gap-3 text-xs text-red-300">
                   <AlertCircle className="w-5 h-5 shrink-0" />
-                  <span>{errorMessage || "Failed to transmit message. Please check required fields."}</span>
+                  <span>{errorMessage || "Failed to send message. Please check required fields."}</span>
                 </motion.div>
               )}
 
@@ -201,7 +192,7 @@ export default function Contact() {
                     onChange={(e) => setName(e.target.value)}
                     required
                     className="w-full bg-[#2D1217] border border-white/10 rounded-xl py-3 px-4 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#D96B43] transition-colors"
-                    placeholder="Alex Vance"
+                    placeholder="Your Name"
                   />
                 </div>
 
@@ -215,27 +206,27 @@ export default function Contact() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     className="w-full bg-[#2D1217] border border-white/10 rounded-xl py-3 px-4 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#D96B43] transition-colors"
-                    placeholder="alex@techfounders.io"
+                    placeholder="you@company.com"
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-[10px] font-bold text-[#E08E53] uppercase tracking-wider mb-2">
-                  Subject / Topic
+                  Subject
                 </label>
                 <input
                   type="text"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   className="w-full bg-[#2D1217] border border-white/10 rounded-xl py-3 px-4 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#D96B43] transition-colors"
-                  placeholder="Full-Stack Web Engineering Project"
+                  placeholder="Opportunity / Collaboration"
                 />
               </div>
 
               <div>
                 <label className="block text-[10px] font-bold text-[#E08E53] uppercase tracking-wider mb-2">
-                  Transmission Message *
+                  Message *
                 </label>
                 <textarea
                   value={message}
@@ -243,7 +234,7 @@ export default function Contact() {
                   required
                   rows={4}
                   className="w-full bg-[#2D1217] border border-white/10 rounded-xl py-3 px-4 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#D96B43] transition-colors resize-none"
-                  placeholder="Hi Faijan, I'd like to discuss a project..."
+                  placeholder="Hello Faijan, I would like to get in touch..."
                 />
               </div>
 
@@ -252,7 +243,7 @@ export default function Contact() {
                 disabled={status === "submitting"}
                 className="w-full py-3.5 px-6 rounded-xl bg-[#D96B43] hover:bg-[#C55A32] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-[#D96B43]/20 transition-all cursor-pointer disabled:opacity-50"
               >
-                {status === "submitting" ? "Transmitting..." : "Send Radio Transmission"}
+                {status === "submitting" ? "Sending..." : "Send Message"}
                 <Send className="w-4 h-4" />
               </button>
             </form>
