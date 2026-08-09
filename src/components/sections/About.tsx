@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import FadeInView from "@/components/ui/FadeInView";
 
 const highlights = [
@@ -25,11 +26,13 @@ export default function About() {
           <FadeInView direction="left" delay={0.15} className="lg:col-span-4 relative flex justify-center lg:justify-start lg:pt-2">
             <div className="aspect-square w-full max-w-[280px] sm:max-w-[320px] relative rounded-2xl overflow-hidden p-2 bg-[#FFFDF9] border border-[#E8DFC8] shadow-md">
               <div className="w-full h-full bg-[#F5EFE6] rounded-xl overflow-hidden relative">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src="/profile.jpg"
                   alt="Faijan Anwar — Full-Stack Developer"
-                  className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 w-full h-full"
+                  fill
+                  sizes="(max-width: 768px) 280px, 320px"
+                  quality={85}
+                  className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </div>
             </div>

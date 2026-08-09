@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({
     request: {
       headers: request.headers,
@@ -22,14 +22,14 @@ export async function middleware(request: NextRequest) {
       return response;
     }
 
-    if (supabaseUrl && supabaseAnonKey) {
+    if (supabaseUrl && supabaseAnonKey && !supabaseUrl.includes("placeholder-project")) {
       const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
         cookies: {
           getAll() {
             return request.cookies.getAll();
           },
           setAll(cookiesToSet) {
-            cookiesToSet.forEach(({ name, value, options }) =>
+            cookiesToSet.forEach(({ name, value }) =>
               request.cookies.set(name, value)
             );
             response = NextResponse.next({
@@ -50,7 +50,6 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(loginUrl);
       }
     } else {
-      // Fallback mode protection without active Supabase: redirect to login if session cookie not set
       if (!adminSessionToken) {
         const loginUrl = new URL("/admin/login", request.url);
         loginUrl.searchParams.set("redirect", path);
