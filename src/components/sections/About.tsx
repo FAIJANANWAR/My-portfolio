@@ -31,7 +31,7 @@ export default function About() {
             </div>
           </FadeInView>
 
-          {/* Polished Professional Summary (No Markdown syntax artifacts, No stat cards) */}
+          {/* Polished Professional Summary */}
           <FadeInView direction="right" delay={0.25} className="lg:col-span-8 flex flex-col gap-5">
             <p className="text-[#4A1D24] dark:text-[#FDFBF7] text-base sm:text-lg leading-relaxed font-bold font-editorial">
               I am Faijan Anwar, a Full-Stack Developer focused on building clean, responsive web applications and reliable backend database services.
@@ -40,7 +40,7 @@ export default function About() {
               My engineering work spans frontend user interfaces created with React and Next.js, and backend API integration using Node.js, Express, and PostgreSQL. I enjoy designing modular components, optimizing page loading performance, and building intuitive tools for users.
             </p>
             <p className="text-[#2D1217]/80 dark:text-[#F5EFE6]/80 text-sm sm:text-base leading-relaxed border-t border-[#E8DFC8] dark:border-[#3D2028] pt-4 mt-2">
-              I am currently pursuing a Master of Computer Applications (MCA) in Computer Science at Poornima University (2025 – 2027) and hold a Bachelor of Technology (B.Tech) degree in Computer Science & Engineering (2020 – 2024). I also hold certifications in Red Hat System Administration (RH124) and Google Cloud Fundamentals.
+              I am currently pursuing a Master of Computer Applications (MCA) in Computer Science at Poornima University (2025 – 2027) and hold a Bachelor&apos;s degree (2022 – 2025). I also hold certifications in Red Hat System Administration (RH124) and Google Cloud Fundamentals.
             </p>
           </FadeInView>
         </div>
